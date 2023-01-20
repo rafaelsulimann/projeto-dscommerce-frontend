@@ -29,8 +29,6 @@
 }
 
 header {
-  background-color: var(--yellow-color);
-  color: var(--gray-color);
   min-height: 70px;
   display: flex;
   align-items: center;
