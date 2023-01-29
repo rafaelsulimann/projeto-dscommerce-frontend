@@ -1,37 +1,35 @@
 import productImg from "../../assets/produto.svg";
+import { ProductDTO } from "../../models/product";
 import CategorieCard from "../CategorieCard";
 import "./styles.scss";
 
-export default function ProductDetailsCard() {
+type Props = {
+  product: ProductDTO;
+}
+
+export default function ProductDetailsCard({product}: Props) {
   return (
     <div className="container product-details-card-container">
       <div className="product-details-card">
         <div className="product-details-card-image">
-          <img src={productImg} alt="Produto" />
+          <img src={product.imgUrl} alt={product.name} />
         </div>
         <div className="product-details-card-infos">
           <div className="product-details-card-price">
             <h3>
-              <span>R$</span>5000,00
+              <span>R$</span>{product.price}
             </h3>
           </div>
           <div className="product-details-card-name">
-            <h3>Computador Gamer XT</h3>
+            <h3>{product.name}</h3>
           </div>
           <div className="product-details-card-description">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <p>{product.description}</p>
           </div>
           <div className="product-details-card-categories">
-            <CategorieCard name="Eletrônicos" />
-            <CategorieCard name="Computadores" />
+            {
+              product.categories.map(item => (<CategorieCard key={item.id} name={item.name} />))
+            }
           </div>
         </div>
       </div>

@@ -8,6 +8,6 @@ import Login from "./routes/Login";
 
 export default function App() {
   return (
-    <RegisterProductAdmin />
+    <ProductDetails />
   );
 }
