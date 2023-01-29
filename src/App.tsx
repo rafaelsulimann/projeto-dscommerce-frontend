@@ -5,8 +5,6 @@ import Cart from "./routes/Cart";
 import ProductDetails from "./routes/ProductDetails";
 import RegisterProductAdmin from "./routes/RegisterProductAdmin";
 import Login from "./routes/Login";
-import Teste from "./routes/Teste";
-
 
 export default function App() {
   return (
