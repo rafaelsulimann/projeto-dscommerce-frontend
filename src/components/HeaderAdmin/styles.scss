@@ -1,0 +1,94 @@
+header {
+    background-color: var(--green-color);
+    display: flex;
+    align-items: center;
+    .header-container {
+        padding: 24px 20px;
+        @media (min-width: 960px){
+            padding: 24px 0px;
+        }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .header-admin-title {
+            @media (max-width: 500px){
+                margin-right: 10px;
+            }
+            @media(min-width: 960px){
+                h1 {
+                    font-size: 24px !important;
+                    line-height: 32.68px !important;
+                }
+            }
+            @media(max-width: 960px){
+                h1 {
+                    font-size: 16px !important;
+                    line-height: 21.79px !important;
+                }
+            }
+            h1 {
+                color: var(--white-color);
+                font-weight: 700;
+            }
+        
+        }
+        .header-admin-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            @media(max-width: 400px){
+                .header-admin-nav-home {
+                    a {
+                        display: none;
+                    }
+                }
+                .header-admin-nav-products {
+                    a {
+                        display: none;
+                    }
+                }
+            }
+            @media(min-width: 400px){
+                .header-admin-nav-home {
+                    display: flex;
+                    margin-right: 20px;
+                }
+                .header-admin-nav-products {
+                    display: flex;
+                    margin-right: 20px;
+                }
+            }
+            h2 {
+                color: var(--white-color);
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 16.34px;
+                max-width: 65px;
+                display: flex;
+                align-items: center;
+                text-align: end;
+            }
+            a {
+                color: var(--white-color);
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 19.07px;
+                display: flex;
+                align-items: center;
+                justify-content: end;
+            }
+            img {
+                width: 20px;
+                height: 20px;
+                @media (max-width: 400px){
+                    margin-right: 20px;
+                }
+                @media (min-width: 400px){
+                    margin-right: 5px;
+
+                }
+            }
+        }
+    }
+}

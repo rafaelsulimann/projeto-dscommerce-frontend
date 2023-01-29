@@ -1,0 +1,38 @@
+.catalog-card {
+    background-color: var(--white-color);
+    min-height: 280px;
+    border-radius: 4px;
+    .catalog-card-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 65px;
+        img{
+            width: 150px;
+            height: 150px;
+        }
+    }
+    .catalog-card-infos {
+        border-top: 1px solid var(--gray-light-color);
+        padding: 10px 20px;
+        .catalog-card-price {
+            span {
+                margin-right: 5px;
+            }
+            h3 {
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 27.24px;
+                color: var(--green-color);
+            }
+        }
+        .catalog-card-name {
+            h3 {
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 16.34px;
+                color: var(--gray-color);
+            }
+        }
+    }
+}

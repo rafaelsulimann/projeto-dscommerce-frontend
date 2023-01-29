@@ -1,23 +1,25 @@
-import './styles.css';
-import ButtonInverse from "../../components/ButtonInverse";
-import ButtonPrimary from "../../components/ButtonPrimary";
+import BuyButton from "../../components/PrimaryButton";
 import HeaderClient from "../../components/HeaderClient";
+import HomeButton from "../../components/SecondButton";
 import ProductDetailsCard from "../../components/ProductDetailsCard";
+import "./styles.scss";
+import SecondButton from "../../components/SecondButton";
+import PrimaryButton from "../../components/PrimaryButton";
 
 export default function ProductDetails() {
   return (
     <>
-      <HeaderClient />
+      <header>
+        <HeaderClient />
+      </header>
       <main>
-        <section id="product-infos" className="generic-section">
-          <div className="container">
-            <ProductDetailsCard />
-          </div>
+        <section id="product-details-card">
+          <ProductDetailsCard />
         </section>
-        <section id="buttons" className="button-section">
-          <div className="container">
-            <ButtonPrimary />
-            <ButtonInverse />
+        <section id="product-details-buttons">
+          <div className="container product-details-buttons-container">
+            <PrimaryButton name="Comprar" />
+            <SecondButton name="Início" />
           </div>
         </section>
       </main>

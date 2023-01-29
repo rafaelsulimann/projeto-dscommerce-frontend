@@ -1,0 +1,88 @@
+.new-product-card-container {
+    @media (max-width: 540px){
+        padding: 20px;
+    }
+    @media (min-width: 540px){
+        padding: 20px 0px;
+    }
+    display: flex;
+    justify-content: center;
+    .new-product-card {
+        width: 100%;
+        background-color: var(--white-color);
+        padding: 20px;
+        border-radius: 4px;
+        max-width: 500px;
+        label {
+            display: none;
+        }
+        .new-product-form-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h2 {
+                text-transform: uppercase;
+                padding: 20px 0px;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 21.79px;
+                color: var(--gray-color);
+            }
+        }
+        .new-product-form{
+            input, select, textarea {
+                width: 100%;
+                min-height: 40px;
+                border: 1px solid var(--gray-light-color);
+                border-radius: 4px;
+                margin-bottom: 20px;
+                padding: 0px 20px;
+                color: var(--gray-color);
+            }
+            input:focus, textarea:focus, select:focus {
+                outline: none;
+                color: var(--gray-color);
+            }
+            input::placeholder, textarea::placeholder {
+                color: var(--gray-light-placeholder-color);
+            }
+            .input-select:invalid {
+                color: var(--gray-light-placeholder-color);
+            }
+            .input-select {
+                
+                option[disabled] {
+                    display: none;
+                }
+                option {
+                    color: var(--gray-color);
+                }
+            }
+            
+            .input-description {
+                textarea {
+                    resize: none;
+                    min-height: 128px;
+                    padding-top: 10px;
+                }
+            }
+            
+            .new-product-form-buttons {
+                @media (min-width: 540px){
+                    display: flex;
+                    justify-content: space-between;
+                    input {
+                        margin: 0px;
+                    }
+                    .second-button{
+                        width: 100% !important;
+                        margin-right: 20px;
+                    }
+                    .primary-button {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+    }
+}

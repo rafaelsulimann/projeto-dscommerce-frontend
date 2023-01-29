@@ -1,0 +1,17 @@
+.catalog-container {
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 960px){
+        padding: 0px 20px;
+    }
+    .catalog-cards {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    }
+    .load-more-button {
+        input {
+            margin-top: 20px;
+        }
+    }
+}

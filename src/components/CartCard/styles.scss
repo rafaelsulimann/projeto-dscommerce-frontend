@@ -1,0 +1,19 @@
+.cart-product-card-container {
+    background-color: var(--white-color);
+    border: 1px solid var(--gray-light-color);
+    border-radius: 4px;
+    
+    .cart-product-total-price {
+        @media(min-width: 400px){
+            display: flex;
+            justify-content: end;
+        }
+        padding: 10px 20px;
+        h2 {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 21.79px;
+            color: var(--green-color);
+        }
+    }
+}

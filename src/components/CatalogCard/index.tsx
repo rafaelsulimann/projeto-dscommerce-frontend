@@ -1,20 +1,20 @@
-import './styles.css';
-import computerImg from "../../assets/produto.svg";
+import productImg from '../../assets/produto.svg';
+import './styles.scss';
 
 export default function CatalogCard() {
-  return (
-    <div className="product-card">
-      <div className="product-image">
-        <img src={computerImg} alt="Produto" />
-      </div>
-      <div className="product-details">
-        <div className="product-price">
-          <h2>R$ 5000,00</h2>
+    return (
+        <div className="catalog-card">
+            <div className="catalog-card-image">
+                <img src={productImg} alt="Produto" />
+            </div>
+            <div className='catalog-card-infos'>
+                <div className='catalog-card-price'>
+                    <h3><span>R$</span>5000,00</h3>
+                </div>
+                <div className='catalog-card-name'>
+                    <h3>Computador Gamer XT</h3>
+                </div>
+            </div>
         </div>
-        <div className="product-name">
-          <h5>Computador Gamer XT</h5>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }

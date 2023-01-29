@@ -1,32 +1,38 @@
-import computerImg from '../../assets/produto.svg';
-import ProductCategory from '../ProductCategory';
-import './styles.css';
+import productImg from "../../assets/produto.svg";
+import CategorieCard from "../CategorieCard";
+import "./styles.scss";
 
 export default function ProductDetailsCard() {
   return (
-    <div className="product-card">
-      <div className="product-image">
-        <img src={computerImg} alt="Produto" />
-      </div>
-      <hr />
-      <div className="product-info">
-        <div className="product-price">
-          <h2>R$ 5000,00</h2>
+    <div className="container product-details-card-container">
+      <div className="product-details-card">
+        <div className="product-details-card-image">
+          <img src={productImg} alt="Produto" />
         </div>
-        <div className="product-name">
-          <h5>Computador Gamer XT</h5>
-        </div>
-        <div className="product-description">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
-            atque deserunt nesciunt non rerum quibusdam ut culpa officiis
-            tenetur, ex magnam esse harum perspiciatis placeat! Distinctio ex
-            fugit necessitatibus libero?
-          </p>
-        </div>
-        <div className="product-categories">
-          <ProductCategory />
-          <ProductCategory />
+        <div className="product-details-card-infos">
+          <div className="product-details-card-price">
+            <h3>
+              <span>R$</span>5000,00
+            </h3>
+          </div>
+          <div className="product-details-card-name">
+            <h3>Computador Gamer XT</h3>
+          </div>
+          <div className="product-details-card-description">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+          <div className="product-details-card-categories">
+            <CategorieCard name="Eletrônicos" />
+            <CategorieCard name="Computadores" />
+          </div>
         </div>
       </div>
     </div>

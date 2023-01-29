@@ -1,0 +1,16 @@
+.categorie-card {
+    margin-bottom: 10px;
+    @media (min-width: 540px){
+        margin-right: 20px;
+    }
+    min-height: 30px;
+    padding: 7px 20px;
+    background-color: var(--gray-color);
+    border-radius: 4px;
+    h4 {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16.34px;
+        color: var(--white-color);
+    }
+}

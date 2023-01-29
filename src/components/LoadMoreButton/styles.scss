@@ -1,0 +1,19 @@
+.load-more-button-container{
+    .load-more-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 24px;
+        input {
+            width: 100%;
+            min-height: 42px;
+            border: 1px solid var(--blue-color);
+            background-color: var(--gray-main-background-color);
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 21.79px;
+            color: var(--blue-color);
+        }
+    }
+}
