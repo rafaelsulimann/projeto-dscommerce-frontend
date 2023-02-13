@@ -56,18 +56,17 @@
         .search-bar-clear-button {
             height: 40px;
             width: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: var(--gray-background-color);
             border-radius: 0px 4px 4px 0px;
             a {
+                height: 37px;
                 text-decoration: none;
                 font-size: 20px;
                 font-weight: 700;
                 color: var(--gray-color);
-                text-align: center;
-                vertical-align: middle;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }

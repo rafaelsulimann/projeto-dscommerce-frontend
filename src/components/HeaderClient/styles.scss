@@ -1,6 +1,12 @@
-header {
+.header-client {
     background-color: var(--yellow-color);
     .header-container {
+        .header-client-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         padding: 24px 20px;
         @media (min-width: 960px){
             padding: 24px 0px;

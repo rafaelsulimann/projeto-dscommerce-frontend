@@ -1,8 +1,14 @@
-header {
+.header-admin {
     background-color: var(--green-color);
     display: flex;
     align-items: center;
     .header-container {
+        .header-admin-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         padding: 24px 20px;
         @media (min-width: 960px){
             padding: 24px 0px;

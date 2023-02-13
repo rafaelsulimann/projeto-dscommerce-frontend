@@ -1,20 +1,29 @@
-import cartImg from '../../assets/carrinho.svg';
-import './styles.scss';
+import { Link } from "react-router-dom";
+import cartImg from "../../assets/carrinho.svg";
+import "./styles.scss";
 
-export default function HeaderTeste() {
+export default function HeaderClient() {
   return (
-    <div className="container header-container">
-      <div className="header-client-title">
-        <h1>DSCommerce</h1>
-      </div>
-      <div className="header-client-nav">
-        <div className="header-client-cart-image">
-          <img src={cartImg} alt="Carrinho" />
+    <header className="header-client">
+      <div className="container header-container">
+        <div className="header-client-title">
+          <Link to="/" className="header-client-link">
+            <h1>DSCommerce</h1>
+          </Link>
         </div>
-        <div className="header-client-login-button">
-          <a href="#">Entrar</a>
+        <div className="header-client-nav">
+          <div className="header-client-cart-image">
+            <Link to="/cart" className="header-client-link">
+              <img src={cartImg} alt="Carrinho" />
+            </Link>
+          </div>
+          <div className="header-client-login-button">
+            <Link to="/login" className="header-client-link">
+              Entrar
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

@@ -1,9 +1,9 @@
-.cart-product-card-container {
+.cart-confirmation-product-card-container {
     background-color: var(--white-color);
     border: 1px solid var(--gray-light-color);
     border-radius: 4px;
     
-    .cart-product-total-price {
+    .cart-confirmation-product-total-price {
         @media(min-width: 400px){
             display: flex;
             justify-content: end;

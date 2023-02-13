@@ -1,5 +1,6 @@
 import LoadMoreButton from "../LoadMoreButton";
 import ProductListingCardItem from "../ProductListingCardItem";
+import * as productService from '../../services/product-service';
 import "./styles.scss";
 
 export default function ProductListingCard() {
@@ -20,13 +21,9 @@ export default function ProductListingCard() {
             </th>
           </thead>
           <tbody>
-            <ProductListingCardItem />
-            <ProductListingCardItem />
-            <ProductListingCardItem />
-            <ProductListingCardItem />
-            <ProductListingCardItem />
-            <ProductListingCardItem />
-            <ProductListingCardItem />
+            {
+              productService.findAll().sort((a,b) => (a.id < b.id) ? -1 : 1).map(product => <ProductListingCardItem key={product.id} product={product} />)
+            }
           </tbody>
         </table>
         <LoadMoreButton />

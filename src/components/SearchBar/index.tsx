@@ -1,7 +1,7 @@
 import searchImg from '../../assets/lupa.svg';
 import './styles.scss';
 
-export default function SearchBarTeste() {
+export default function SearchBar() {
   return (
     <div className="container search-bar-container">
       <form className="search-bar">

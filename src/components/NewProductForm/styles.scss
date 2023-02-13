@@ -66,23 +66,34 @@
                     padding-top: 10px;
                 }
             }
-            
-            .new-product-form-buttons {
+            .new-product-form-buttons{
+                input {
+                    margin: 0px;
+                }
                 @media (min-width: 540px){
                     display: flex;
                     justify-content: space-between;
-                    input {
+                    .second-button {
                         margin: 0px;
                     }
-                    .second-button{
-                        width: 100% !important;
-                        margin-right: 20px;
+                }
+                .new-product-link {
+                    width: 100%;
+                    max-width: 220px;
+                    .second-button {
+                        margin-bottom: 20px;
+                        input {
+                            cursor: pointer;
+                        }
                     }
                     .primary-button {
-                        width: 100% !important;
+                        input {
+                            cursor: pointer;
+                        }
                     }
-                }
+                }                
             }
         }
     }
 }
+

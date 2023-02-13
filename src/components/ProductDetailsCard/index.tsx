@@ -1,4 +1,3 @@
-import productImg from "../../assets/produto.svg";
 import { ProductDTO } from "../../models/product";
 import CategorieCard from "../CategorieCard";
 import "./styles.scss";

@@ -1,13 +1,13 @@
 import './styles.scss';
 
 type Props = {
-    name : string;
+    value : string;
 }
 
-export default function PrimaryButton({name} : Props) {
+export default function PrimaryButton({value} : Props) {
     return (
         <div className="primary-button">
-            <input type="submit" value={name}/>
+            <input type="submit" value={value}/>
         </div>
     );
 }
