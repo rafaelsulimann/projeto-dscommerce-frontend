@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomeAdmin from "./routes/HomeAdmin";
 import NewProduct from "./routes/HomeAdmin/NewProduct";
 import ProductListing from "./routes/HomeAdmin/ProductListing";
@@ -25,11 +25,13 @@ export default function App() {
             <Route index element={<CartCardIndex />} />
             <Route path="confirmation" element={<CartConfirmation />}/>
           </Route>
+          <Route path="*" element={<Navigate to="/" />}/>
         </Route>
         <Route path="/admin" element={<HomeAdmin />}>
           <Route index element={<WelcomeAdmin />} />
           <Route path="product-listing" element={<ProductListing />} />
           <Route path="new-product" element={<NewProduct />} />
+          <Route path="*" element={<Navigate to="/admin" />} />
         </Route>
       </Routes>
     </BrowserRouter>
