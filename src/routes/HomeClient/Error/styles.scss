@@ -1,0 +1,19 @@
+.error {
+    padding-top: 20px;
+    .error-message-title{
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .error-home-button-container{
+        display: flex;
+        justify-content: center;
+        .error-home-button {
+            width: 350px;
+            .error-home-button-link{
+                input{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

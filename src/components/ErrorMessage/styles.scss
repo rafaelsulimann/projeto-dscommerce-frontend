@@ -1,0 +1,12 @@
+.error-message-container{
+    .error-message {
+        @media(max-width: 960px){
+            font-size: 16px;
+        }
+        @media(min-width: 960px){
+            font-size: 24px;
+        }
+        font-weight: 700;
+        color: var(--gray-color);
+    }
+}
