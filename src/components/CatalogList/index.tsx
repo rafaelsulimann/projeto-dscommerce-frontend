@@ -1,15 +1,19 @@
 import CatalogCard from "../CatalogCard";
-import * as productService from '../../services/product-service';
 import LoadMoreButton from "../LoadMoreButton";
 import "./styles.scss";
+import { ProductDTO } from "../../models/product";
 
-export default function CatalogList() {
+type Props = {
+  products: ProductDTO[];
+};
+
+export default function CatalogList({ products }: Props) {
   return (
     <div className="container catalog-container">
       <div className="catalog-cards">
-        {
-          productService.findAll().map(product => <CatalogCard key={product.id} product={product} />)
-        }
+        {products.map((product) => (
+          <CatalogCard key={product.id} product={product} />
+        ))}
       </div>
       <div className="load-more-button">
         <LoadMoreButton />

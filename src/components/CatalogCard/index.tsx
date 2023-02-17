@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProductDTO } from "../../models/product";
+import LoadMoreButton from "../LoadMoreButton";
 import "./styles.scss";
 
 type Props = {
