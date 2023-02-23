@@ -12,9 +12,6 @@
 
     .cart-product-card-infos {
         display: flex;
-        @media (min-width: 320px) {
-            justify-content: space-between;
-        }
         img {
             width: 78px;
             height: 78px;
@@ -48,6 +45,7 @@
                     font-weight: 700;
                     color: var(--blue-color);
                     margin-right: 5px;
+                    cursor: pointer;
                 }
                 p {
                     font-weight: 700;

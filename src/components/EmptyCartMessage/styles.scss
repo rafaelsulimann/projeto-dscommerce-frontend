@@ -1,0 +1,14 @@
+.empty-cart-message-container {
+    .empty-cart-message {
+        h2 {
+            @media(max-width: 960px){
+                font-size: 20px;
+            }
+            @media(min-width: 960px){
+                font-size: 24px;
+            }
+            font-weight: 700;
+            color: var(--gray-color);
+        }
+    }
+}

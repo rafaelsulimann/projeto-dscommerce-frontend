@@ -2,8 +2,19 @@ import LoadMoreButton from "../LoadMoreButton";
 import ProductListingCardItem from "../ProductListingCardItem";
 import * as productService from '../../services/product-service';
 import "./styles.scss";
+import { useEffect, useState } from "react";
+import { ProductDTO } from "../../models/product";
 
 export default function ProductListingCard() {
+
+  const [products, setProducts] = useState<ProductDTO[]>([]);
+
+  useEffect(() => {
+    productService.findAll()
+    .then(response => {
+      setProducts(response.data.content)
+    })
+  }, [])
   return (
     <>
       <div className="container product-listing-container">
@@ -22,7 +33,7 @@ export default function ProductListingCard() {
           </thead>
           <tbody>
             {
-              productService.findAll().sort((a,b) => (a.id < b.id) ? -1 : 1).map(product => <ProductListingCardItem key={product.id} product={product} />)
+              products.map(product => <ProductListingCardItem key={product.id} product={product} />)
             }
           </tbody>
         </table>
