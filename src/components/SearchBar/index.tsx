@@ -1,20 +1,46 @@
-import searchImg from '../../assets/lupa.svg';
-import './styles.scss';
+import { useState } from "react";
+import searchImg from "../../assets/lupa.svg";
+import "./styles.scss";
 
-export default function SearchBar() {
+type Props = {
+  onSearch: Function;
+};
+
+export default function SearchBar({ onSearch }: Props) {
+  const [inputText, setInputText] = useState("");
+
+  function handleSubmit(event: any) {
+    event.preventDefault();
+    onSearch(inputText);
+  }
+
+  function handleChange(event: any) {
+    setInputText(event.target.value);
+  }
+
+  function handleResetClick() {
+    setInputText("");
+    onSearch(inputText);
+  }
+
   return (
     <div className="container search-bar-container">
-      <form className="search-bar">
+      <form className="search-bar" onSubmit={handleSubmit}>
         <div className="search-bar-submit-button">
-          <a href="#">
+          <button>
             <img src={searchImg} alt="Procurar" />
-          </a>
+          </button>
         </div>
         <div className="search-bar-input-text">
-          <input type="text" placeholder="Nome do produto" />
+          <input
+            value={inputText}
+            type="text"
+            placeholder="Nome do produto"
+            onChange={handleChange}
+          />
         </div>
         <div className="search-bar-clear-button">
-          <a href="#">x</a>
+          <button onClick={handleResetClick}>x</button>
         </div>
       </form>
     </div>

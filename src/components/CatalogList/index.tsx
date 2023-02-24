@@ -15,9 +15,6 @@ export default function CatalogList({ products }: Props) {
           <CatalogCard key={product.id} product={product} />
         ))}
       </div>
-      <div className="load-more-button">
-        <LoadMoreButton />
-      </div>
     </div>
   );
 }

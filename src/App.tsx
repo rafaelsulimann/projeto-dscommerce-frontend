@@ -6,7 +6,6 @@ import WelcomeAdmin from "./routes/HomeAdmin/WelcomeAdmin";
 import HomeClient from "./routes/HomeClient";
 import Cart from "./routes/HomeClient/Cart";
 import CartCardIndex from "./routes/HomeClient/Cart/CartCardIndex";
-import CartButtonsIndex from "./routes/HomeClient/Cart/CartCardIndex";
 import CartConfirmation from "./routes/HomeClient/Cart/CartConfirmation";
 import Catalog from "./routes/HomeClient/Catalog";
 import Login from "./routes/HomeClient/Login";
