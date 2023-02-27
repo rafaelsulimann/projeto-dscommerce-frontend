@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomeAdmin from "./routes/HomeAdmin";
 import NewProduct from "./routes/HomeAdmin/NewProduct";
@@ -10,29 +11,39 @@ import CartConfirmation from "./routes/HomeClient/Cart/CartConfirmation";
 import Catalog from "./routes/HomeClient/Catalog";
 import Login from "./routes/HomeClient/Login";
 import ProductDetails from "./routes/HomeClient/ProductDetails";
+import { ContextCartCount } from "./utils/context-cart";
 
 export default function App() {
+  const [contextCartCount, setContextCartCount] = useState<number>(0);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomeClient />}>
-          <Route index element={<Catalog />} />
-          <Route path="catalog" element={<Catalog />} />
-          <Route path="product-details/:productId" element={<ProductDetails />} />
-          <Route path="login" element={<Login />} />
-          <Route path="cart" element={<Cart />}>
-            <Route index element={<CartCardIndex />} />
-            <Route path="confirmation" element={<CartConfirmation />}/>
+    <ContextCartCount.Provider
+      value={{ contextCartCount, setContextCartCount }}
+    >
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomeClient />}>
+            <Route index element={<Catalog />} />
+            <Route path="catalog" element={<Catalog />} />
+            <Route
+              path="product-details/:productId"
+              element={<ProductDetails />}
+            />
+            <Route path="login" element={<Login />} />
+            <Route path="cart" element={<Cart />}>
+              <Route index element={<CartCardIndex />} />
+              <Route path="confirmation" element={<CartConfirmation />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />}/>
-        </Route>
-        <Route path="/admin" element={<HomeAdmin />}>
-          <Route index element={<WelcomeAdmin />} />
-          <Route path="product-listing" element={<ProductListing />} />
-          <Route path="new-product" element={<NewProduct />} />
-          <Route path="*" element={<Navigate to="/admin" />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route path="/admin" element={<HomeAdmin />}>
+            <Route index element={<WelcomeAdmin />} />
+            <Route path="product-listing" element={<ProductListing />} />
+            <Route path="new-product" element={<NewProduct />} />
+            <Route path="*" element={<Navigate to="/admin" />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ContextCartCount.Provider>
   );
 }

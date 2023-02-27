@@ -38,5 +38,8 @@ export function decreaseItem(productId : number) {
     if(item && item.quantity >= 2) {
         item.quantity--;
         cartRepository.save(cart);
+    }else {
+        cart.items = cart.items.filter(item => item.productId!== productId);
+        cartRepository.save(cart);
     }
 }

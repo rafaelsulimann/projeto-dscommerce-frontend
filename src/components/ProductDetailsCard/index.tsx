@@ -3,19 +3,25 @@ import { ProductDTO } from "../../models/product";
 import CategorieCard from "../CategorieCard";
 import PrimaryButton from "../PrimaryButton";
 import SecondButton from "../SecondButton";
-import * as cartService from '../../services/cart-service'
+import * as cartService from "../../services/cart-service";
 import "./styles.scss";
+import { useContext } from "react";
+import { ContextCartCount } from "../../utils/context-cart";
 
 type Props = {
   product: ProductDTO;
 };
 
 export default function ProductDetailsCard({ product }: Props) {
+  const { setContextCartCount } = useContext(ContextCartCount);
 
   function handleBuyClick() {
-    cartService.addProduct(product);
+    if (product) {
+      cartService.addProduct(product);
+      setContextCartCount(cartService.getCart().items.length);
+    }
   }
-  
+
   return (
     <>
       <div className="container product-details-card-container">
@@ -45,7 +51,11 @@ export default function ProductDetailsCard({ product }: Props) {
         </div>
       </div>
       <div className="container product-details-buttons-container">
-        <Link to="/cart" className="product-details-link" onClick={handleBuyClick}>
+        <Link
+          to="/cart"
+          className="product-details-link"
+          onClick={handleBuyClick}
+        >
           <PrimaryButton value="Comprar" />
         </Link>
         <Link to="/" className="product-details-link">
