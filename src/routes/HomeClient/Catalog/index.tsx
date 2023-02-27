@@ -4,34 +4,52 @@ import LoadMoreButton from "../../../components/LoadMoreButton";
 import SearchBar from "../../../components/SearchBar";
 import { ProductDTO } from "../../../models/product";
 import * as productService from "../../../services/product-service";
-import './styles.scss';
+import "./styles.scss";
+
+type QueryParams = {
+  page: number;
+  productName: string;
+};
 
 export default function Catalog() {
+  const [isLastPage, setIsLastPage] = useState(false);
   const [products, setProducts] = useState<ProductDTO[]>([]);
-
-  const [productSearchName, setProductSearchName] = useState("");
-
-  function handleSearch(productName : string){
-    setProductSearchName(productName);
-  }
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    productName: "",
+  });
 
   useEffect(() => {
-    productService.findAllRequest(0, productSearchName)
-    .then(response => {
-      setProducts(response.data.content);
-    })
-  }, [productSearchName]);
+    productService
+      .findAllRequest(queryParams.page, queryParams.productName)
+      .then((response) => {
+        const nextPage = response.data.content;
+        setProducts(products.concat(nextPage));
+        setIsLastPage(response.data.last);
+      });
+  }, [queryParams]);
+
+  function handleSearch(productName: string) {
+    setProducts([]);
+    setQueryParams({ ...queryParams, page: 0, productName: productName });
+  }
+
+  function handleNextPageClick() {
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 });
+  }
 
   return (
     <main className="catalog">
       <section id="search-bar">
-        <SearchBar onSearch={handleSearch}/>
+        <SearchBar onSearch={handleSearch} />
       </section>
       <section id="catalog-list">
-        <CatalogList products={products}/>
+        <CatalogList products={products} />
       </section>
       <section id="load-more">
-        <LoadMoreButton />
+        {
+          !isLastPage && <LoadMoreButton onClick={handleNextPageClick} />
+        }
       </section>
     </main>
   );
