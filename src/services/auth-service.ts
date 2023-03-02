@@ -29,6 +29,6 @@ export function saveAccessToken(token : string){
     accessTokenRepository.save(token);
 }
 
-export function getAccessToken(){
-    accessTokenRepository.get();
+export function getAccessToken() : string | null{
+    return accessTokenRepository.get();
 }
