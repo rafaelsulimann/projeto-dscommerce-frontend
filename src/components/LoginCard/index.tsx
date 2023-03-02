@@ -1,6 +1,26 @@
+import { useState } from "react";
+import { CredentialsDTO } from "../../models/auth";
 import "./styles.scss";
 
-export default function LoginCard() {
+type Props = {
+  onSubmit : Function;
+  onChange: Function;
+  formData: CredentialsDTO;
+}
+
+export default function LoginCard({onSubmit, onChange, formData} : Props) {
+
+  function handleSubmit(event: any) {
+    event.preventDefault();
+    onSubmit(formData);
+  }
+
+  function handleChange(event: any) {
+    const value = event.target.value;
+    const name = event.target.name;
+    onChange({ ...formData, [name]: value });
+  }
+
   return (
     <>
       <div className="container login-container">
@@ -8,18 +28,27 @@ export default function LoginCard() {
           <div className="login-title">
             <h2>Login</h2>
           </div>
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <div className="login-form-input-text">
-              <label htmlFor="Email">Email</label>
-              <input name="email" id="email" type="text" placeholder="Email" />
+              <label htmlFor="username">Email</label>
+              <input
+                name="username"
+                id="username"
+                value={formData.username || ""}
+                type="text"
+                placeholder="Email"
+                onChange={handleChange}
+              />
             </div>
             <div className="login-form-input-text">
               <label htmlFor="password">Senha</label>
               <input
                 name="password"
                 id="password"
+                value={formData.password || ""}
                 type="password"
                 placeholder="Senha"
+                onChange={handleChange}
               />
             </div>
             <div className="login-form-input-submit">

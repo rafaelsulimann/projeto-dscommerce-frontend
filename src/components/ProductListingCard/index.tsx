@@ -1,20 +1,14 @@
+import { ProductDTO } from "../../models/product";
 import LoadMoreButton from "../LoadMoreButton";
 import ProductListingCardItem from "../ProductListingCardItem";
-import * as productService from '../../services/product-service';
 import "./styles.scss";
-import { useEffect, useState } from "react";
-import { ProductDTO } from "../../models/product";
 
-export default function ProductListingCard() {
+type Props = {
+  products : ProductDTO[]
+}
 
-  const [products, setProducts] = useState<ProductDTO[]>([]);
+export default function ProductListingCard({products} : Props) {
 
-  useEffect(() => {
-    productService.findAll()
-    .then(response => {
-      setProducts(response.data.content)
-    })
-  }, [])
   return (
     <>
       <div className="container product-listing-container">
@@ -37,7 +31,6 @@ export default function ProductListingCard() {
             }
           </tbody>
         </table>
-        <LoadMoreButton />
       </div>
     </>
   );
