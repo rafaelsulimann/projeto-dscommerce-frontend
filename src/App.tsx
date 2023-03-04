@@ -38,7 +38,7 @@ export default function App() {
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
-          <Route path="/admin" element={<PrivateRoute><HomeAdmin /></PrivateRoute>}>
+          <Route path="/admin" element={<PrivateRoute roles={['ROLE_ADMIN']}><HomeAdmin /></PrivateRoute>}>
             <Route index element={<WelcomeAdmin />} />
             <Route path="product-listing" element={<ProductListing />} />
             <Route path="new-product" element={<NewProduct />} />
