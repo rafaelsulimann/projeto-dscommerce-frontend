@@ -21,7 +21,6 @@ export default function Catalog() {
   });
 
   useEffect(() => {
-    console.log(isAuthenticated());
     productService
       .findAllRequest(queryParams.page, queryParams.productName)
       .then((response) => {

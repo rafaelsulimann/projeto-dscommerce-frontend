@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { unstable_HistoryRouter as HistoryRouter, Navigate, Route, Routes } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 import HomeAdmin from "./routes/HomeAdmin";
 import NewProduct from "./routes/HomeAdmin/NewProduct";
 import ProductListing from "./routes/HomeAdmin/ProductListing";
@@ -37,7 +38,7 @@ export default function App() {
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
-          <Route path="/admin" element={<HomeAdmin />}>
+          <Route path="/admin" element={<PrivateRoute><HomeAdmin /></PrivateRoute>}>
             <Route index element={<WelcomeAdmin />} />
             <Route path="product-listing" element={<ProductListing />} />
             <Route path="new-product" element={<NewProduct />} />
