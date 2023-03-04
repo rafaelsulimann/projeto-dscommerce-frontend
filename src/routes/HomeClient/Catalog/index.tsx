@@ -3,7 +3,6 @@ import CatalogList from "../../../components/CatalogList";
 import LoadMoreButton from "../../../components/LoadMoreButton";
 import SearchBar from "../../../components/SearchBar";
 import { ProductDTO } from "../../../models/product";
-import { isAuthenticated } from "../../../services/auth-service";
 import * as productService from "../../../services/product-service";
 import "./styles.scss";
 
