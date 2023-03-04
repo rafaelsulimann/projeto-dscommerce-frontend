@@ -3,6 +3,7 @@ import CatalogList from "../../../components/CatalogList";
 import LoadMoreButton from "../../../components/LoadMoreButton";
 import SearchBar from "../../../components/SearchBar";
 import { ProductDTO } from "../../../models/product";
+import { isAuthenticated } from "../../../services/auth-service";
 import * as productService from "../../../services/product-service";
 import "./styles.scss";
 
@@ -20,6 +21,7 @@ export default function Catalog() {
   });
 
   useEffect(() => {
+    console.log(isAuthenticated());
     productService
       .findAllRequest(queryParams.page, queryParams.productName)
       .then((response) => {
