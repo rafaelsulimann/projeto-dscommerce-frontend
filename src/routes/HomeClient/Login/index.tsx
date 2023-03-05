@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoginCard from "../../../components/LoginCard";
 import { CredentialsDTO } from "../../../models/auth";
 import * as authService from '../../../services/auth-service'
+import { ContextToken } from "../../../utils/context-token";
 import "./styles.scss";
 
 export default function Login() {
+
+  const {setContextToken} = useContext(ContextToken);
 
   const [formData, setFormData] = useState<CredentialsDTO>({
     username: "",
@@ -16,7 +19,7 @@ export default function Login() {
     authService.loginRequest(formData)
       .then(response => {
         authService.saveAccessToken(response.data.access_token);
-        console.log(authService.getAccessTokenPayload());
+        setContextToken(authService.getAccessTokenPayload());
       })
       .catch(error => {
         console.log(error.response.data);

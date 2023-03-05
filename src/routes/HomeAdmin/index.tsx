@@ -4,7 +4,7 @@ import HeaderAdmin from "../../components/HeaderAdmin";
 export default function HomeAdmin() {
   return (
     <>
-      <HeaderAdmin name="Maria Silva" />
+      <HeaderAdmin />
       <Outlet />
     </>
   );

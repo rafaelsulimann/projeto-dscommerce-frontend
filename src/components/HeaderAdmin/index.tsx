@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 import homeImg from "../../assets/casa.svg";
 import productImg from "../../assets/produtos.svg";
+import LoggedUser from "../LoggedUser";
 import "./styles.scss";
 
-type Props = {
-  name: string;
-};
-
-export default function HeaderAdmin({ name }: Props) {
+export default function HeaderAdmin() {
   return (
     <>
       <header className="header-admin">
@@ -31,8 +28,7 @@ export default function HeaderAdmin({ name }: Props) {
               </div>
             </Link>
             <div className="header-admin-nav-login-infos">
-              <h2>{name}</h2>
-              <a href="#">Sair</a>
+              <LoggedUser linkClassName="header-admin-link" />
             </div>
           </div>
         </div>

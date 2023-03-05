@@ -1,9 +1,7 @@
 #login-card {
     padding: 20px 0px;
 }
+
 .login {
-    @media(max-width: 960px){
-        height: 90vh;
-    }
-    height: 88.5vh;
+    max-height: 80vh !important;
 }

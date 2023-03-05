@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import CartIcon from "../CartIcon";
+import iconAdmin from "../../assets/engrenagem.svg";
+import * as authService from "../../services/auth-service";
 import "./styles.scss";
+import { ContextToken } from "../../utils/context-token";
+import { useContext } from "react";
+import LoggedUser from "../LoggedUser";
 
 export default function HeaderClient() {
+
+  const { contextToken } = useContext(ContextToken);
+
   return (
     <header className="header-client">
       <div className="container header-container">
@@ -12,15 +20,22 @@ export default function HeaderClient() {
           </Link>
         </div>
         <div className="header-client-nav">
-          <div className="header-client-cart-image">
+          {
+            contextToken &&
+            authService.hasAnyRoles(["ROLE_ADMIN"]) && (
+            <div className="header-client-nav-items header-client-admin-image">
+              <Link to="/admin" className="header-client-link">
+                <img src={iconAdmin} alt="Admin" />
+              </Link>
+            </div>
+          )}
+          <div className="header-client-nav-items header-client-cart-image">
             <Link to="/cart" className="header-client-link">
               <CartIcon />
             </Link>
           </div>
-          <div className="header-client-login-button">
-            <Link to="/login" className="header-client-link">
-              Entrar
-            </Link>
+          <div className="header-client-nav-items header-client-login-button">
+              <LoggedUser linkClassName="header-client-link" />
           </div>
         </div>
       </div>
