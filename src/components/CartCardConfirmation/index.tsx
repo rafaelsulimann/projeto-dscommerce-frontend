@@ -1,17 +1,23 @@
+import { OrderDTO } from "../../models/order";
 import CartProductCardConfirmation from "../CartProductCardConfirmation";
 import "./styles.scss";
 
-export default function CartCardConfirmation() {
+type Props = {
+  order?: OrderDTO;
+}
+
+export default function CartCardConfirmation({order} : Props) {
   return (
     <>
       <div className="container cart-confirmation-product-card-container">
         <div className="cart-confirmation-product-cards">
-          <CartProductCardConfirmation />
-          <CartProductCardConfirmation />
+          {
+            order?.items.map(item => <CartProductCardConfirmation item={item}/>)
+          }
         </div>
         <div className="cart-confirmation-product-total-price">
           <h2>
-            <span>R$</span>15000,00
+            <span>R$</span>{order?.total.toFixed(2)}
           </h2>
         </div>
       </div>

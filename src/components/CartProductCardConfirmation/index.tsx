@@ -1,20 +1,24 @@
-import productImg from "../../assets/produto.svg";
+import { OrderItemDTO } from "../../models/order";
 import './styles.scss';
 
-export default function CartProductCardConfirmation() {
+type Props = {
+  item: OrderItemDTO;
+}
+
+export default function CartProductCardConfirmation({item} : Props) {
   return (
     <div className="cart-confirmation-product-card">
       <div className="cart-confirmation-product-card-infos">
-        <img src={productImg} alt="Produto" />
+        <img src={item.imgUrl} alt={item.name} />
         <div className="confirmation-name-and-quantity">
-          <h3>Computador Gamer XT</h3>
+          <h3>{item.name}</h3>
           <div className="confirmation-quantity-div">
-            <p>1</p>
+            <p>{item.quantity}</p>
           </div>
         </div>
       </div>
       <div className="cart-confirmation-product-card-price">
-        <h3><span>R$</span>5000,00</h3>
+        <h3><span>R$</span>{item.subTotal.toFixed(2)}</h3>
       </div>
     </div>
   );

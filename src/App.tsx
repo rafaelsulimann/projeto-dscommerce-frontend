@@ -43,7 +43,7 @@ export default function App() {
               <Route path="login" element={<Login />} />
               <Route path="cart" element={<Cart />}>
                 <Route index element={<CartCardIndex />} />
-                <Route path="confirmation" element={<CartConfirmation />} />
+                <Route path="confirmation/:orderId" element={<CartConfirmation />} />
               </Route>
               <Route path="*" element={<Navigate to="/" />} />
             </Route>
