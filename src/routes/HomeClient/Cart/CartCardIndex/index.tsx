@@ -1,16 +1,18 @@
+import "./styles.scss";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { OrderDTO } from "../../../../models/order";
 import CartCard from "../../../../components/CartCard";
 import PrimaryButton from "../../../../components/PrimaryButton";
 import SecondButton from "../../../../components/SecondButton";
-import * as cartService from "../../../../services/cart-service";
-import "./styles.scss";
 import { ContextCartCount } from "../../../../utils/context-cart";
+import * as cartService from "../../../../services/cart-service";
+import * as orderService from "../../../../services/order-service";
 
 export default function CartCardIndex() {
-  const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
 
+  const navigate = useNavigate();
+  const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
   const {setContextCartCount} = useContext(ContextCartCount);
 
   function handleClearClick() {
@@ -34,6 +36,15 @@ export default function CartCardIndex() {
     setContextCartCount(newCart.items.length);
   }
 
+  function handleSaveOrderClick(){
+    orderService.saveOrderRequest(cart)
+      .then(response => {
+        cartService.clearCart();
+        setContextCartCount(0);
+        navigate(`/cart/confirmation/${response.data.id}`)
+      })
+  }
+
   return (
     <>
       <section id="cart-product-card">
@@ -48,9 +59,9 @@ export default function CartCardIndex() {
       <section id="cart-buttons">
         <div className="container cart-buttons-container">
           {cart.items.length !== 0 ? (
-            <Link to="/cart/confirmation" className="cart-link">
-              <PrimaryButton value="Finalizar pedido" />
-            </Link>
+            <div className="cart-link">
+              <PrimaryButton value="Finalizar pedido" onClick={handleSaveOrderClick}/>
+            </div>
           ) : (
             <div />
           )}
