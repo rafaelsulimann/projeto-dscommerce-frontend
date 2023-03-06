@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import homeImg from "../../assets/casa.svg";
 import productImg from "../../assets/produtos.svg";
@@ -10,25 +11,25 @@ export default function HeaderAdmin() {
       <header className="header-admin">
         <div className="container header-container">
           <div className="header-admin-title">
-            <Link to="/admin" className="header-admin-link">
+            <Link to="/admin" className="header-admin-nav-link">
               <h1>DSCommerce</h1>
             </Link>
           </div>
           <div className="header-admin-nav">
-            <Link to="/admin" className="header-admin-link">
+            <NavLink to="/admin/home" className={({isActive}) => isActive ? "header-admin-nav-link active" : "header-admin-nav-link non-active"}>
               <div className="header-admin-nav-home">
                 <img src={homeImg} alt="Home" />
-                Início
+                <h2>Início</h2>
               </div>
-            </Link>
-            <Link to="/admin/product-listing" className="header-admin-link">
+            </NavLink>
+            <NavLink to="/admin/products" className={({isActive}) => isActive ? "header-admin-nav-link active" : "header-admin-nav-link non-active"}>
               <div className="header-admin-nav-products">
                 <img src={productImg} alt="Produtos" />
-                Produtos
+                <h2>Produtos</h2>
               </div>
-            </Link>
+            </NavLink>
             <div className="header-admin-nav-login-infos">
-              <LoggedUser linkClassName="header-admin-link" />
+              <LoggedUser linkClassName="header-admin-nav-link" />
             </div>
           </div>
         </div>

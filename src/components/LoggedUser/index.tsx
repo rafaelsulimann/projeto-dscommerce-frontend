@@ -21,7 +21,7 @@ export default function LoggedUser({linkClassName} : Props) {
         contextToken
         ? (
             <>
-                <h2>{contextToken.user_name}</h2>
+                <p>{contextToken.user_name}</p>
                 <a onClick={handleLogoutClick}><span>Sair</span></a>
             </>
         )

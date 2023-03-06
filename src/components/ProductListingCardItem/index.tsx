@@ -6,9 +6,10 @@ import { ProductDTO } from "../../models/product";
 
 type Props = {
   product : ProductDTO;
+  onDeleteClick: any;
 }
 
-export default function ProductListingCardItem({product}: Props) {
+export default function ProductListingCardItem({product, onDeleteClick}: Props) {
   return (
     <tr className="product-row">
       <td className="product-id">
@@ -27,7 +28,7 @@ export default function ProductListingCardItem({product}: Props) {
         <img src={editImg} alt="Editar" />
       </td>
       <td className="product-button delete-button">
-        <img src={deleteImg} alt="Deletar" />
+        <img src={deleteImg} alt="Deletar" onClick={onDeleteClick}/>
       </td>
     </tr>
   );

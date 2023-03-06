@@ -45,6 +45,14 @@
                 align-items: center;
                 justify-content: start;
             }
+            p {
+                color: var(--gray-color);
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 16.34px;
+                display: flex;
+                align-items: center;
+            }
             a {
                 color: var(--gray-color);
                 text-decoration: none;

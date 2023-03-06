@@ -3,7 +3,7 @@ import {unstable_HistoryRouter as HistoryRouter, Navigate, Route, Routes} from "
 import PrivateRoute from "./components/PrivateRoute";
 import { AccessPayloadTokenDTO } from "./models/auth";
 import HomeAdmin from "./routes/HomeAdmin";
-import NewProduct from "./routes/HomeAdmin/NewProduct";
+import ProductForm from "./routes/HomeAdmin/ProductForm";
 import ProductListing from "./routes/HomeAdmin/ProductListing";
 import WelcomeAdmin from "./routes/HomeAdmin/WelcomeAdmin";
 import HomeClient from "./routes/HomeClient";
@@ -48,9 +48,11 @@ export default function App() {
               <Route path="*" element={<Navigate to="/" />} />
             </Route>
             <Route path="/admin" element={<PrivateRoute roles={["ROLE_ADMIN"]}><HomeAdmin /></PrivateRoute>}>
-              <Route index element={<WelcomeAdmin />} />
-              <Route path="product-listing" element={<ProductListing />} />
-              <Route path="new-product" element={<NewProduct />} />
+              <Route index element={<Navigate to={"/admin/home"}/>} />
+              <Route path="home" element={<WelcomeAdmin />} />
+              <Route path="products" element={<ProductListing />} >
+                <Route path=":productId" element={<ProductForm />} />
+              </Route>
               <Route path="*" element={<Navigate to="/admin" />} />
             </Route>
           </Routes>

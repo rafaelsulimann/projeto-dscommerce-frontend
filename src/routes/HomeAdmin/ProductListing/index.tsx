@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DialogInfo from "../../../components/DialogInfo";
 import LoadMoreButton from "../../../components/LoadMoreButton";
 import ProductListingCard from "../../../components/ProductListingCard";
 import RegisterProduct from "../../../components/RegisterProduct";
@@ -13,7 +14,10 @@ type QueryParams = {
 };
 
 export default function ProductListing() {
-
+  const [dialogInfoData, setDialogInfoData] = useState({
+    visible: false,
+    message: "Operação realizada com sucesso"
+  });
   const [isLastPage, setIsLastPage] = useState(false);
   const [products, setProducts] = useState<ProductDTO[]>([]);
   const [queryParams, setQueryParams] = useState<QueryParams>({
@@ -40,22 +44,32 @@ export default function ProductListing() {
     setQueryParams({ ...queryParams, page: queryParams.page + 1 });
   }
 
+  function handleDeleteClick(){
+    setDialogInfoData({...dialogInfoData, visible: true})
+  }
+
+  function handleCloseModalClick(){
+    setDialogInfoData({...dialogInfoData, visible: false});
+  }
+
   return (
-      <main className="product-listing">
-        <section id="register-product">
-          <RegisterProduct />
-        </section>
-        <section id="search-bar">
-          <SearchBar onSearch={handleSearch}/>
-        </section>
-        <section id="product-listing">
-            <ProductListingCard products={products}/>
-        </section>
-        <section id="load-more">
-        {
-          !isLastPage && <LoadMoreButton onClick={handleNextPageClick} />
-        }
+    <main className="product-listing">
+      <section id="register-product">
+        <RegisterProduct />
       </section>
-      </main>
+      <section id="search-bar">
+        <SearchBar onSearch={handleSearch} />
+      </section>
+      <section id="product-listing">
+        <ProductListingCard products={products} onDeleteClick={handleDeleteClick}/>
+      </section>
+      <section id="load-more">
+        {!isLastPage && <LoadMoreButton onClick={handleNextPageClick} />}
+      </section>
+      {
+        dialogInfoData.visible &&
+        <DialogInfo modalMessage={dialogInfoData.message} onCloseModal={handleCloseModalClick}/>
+      }
+    </main>
   );
 }
