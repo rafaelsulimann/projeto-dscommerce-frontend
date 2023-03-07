@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DialogConfirmation from "../../../components/DialogConfirmation";
 import DialogInfo from "../../../components/DialogInfo";
 import LoadMoreButton from "../../../components/LoadMoreButton";
 import ProductListingCard from "../../../components/ProductListingCard";
@@ -17,6 +18,10 @@ export default function ProductListing() {
   const [dialogInfoData, setDialogInfoData] = useState({
     visible: false,
     message: "Operação realizada com sucesso"
+  });
+  const [dialogConfirmationData, setDialogConfirmationData] = useState({
+    visible: false,
+    message: "Tem certeza"
   });
   const [isLastPage, setIsLastPage] = useState(false);
   const [products, setProducts] = useState<ProductDTO[]>([]);
@@ -45,10 +50,15 @@ export default function ProductListing() {
   }
 
   function handleDeleteClick(){
-    setDialogInfoData({...dialogInfoData, visible: true})
+    setDialogConfirmationData({...dialogConfirmationData, visible: true});
   }
 
-  function handleCloseModalClick(){
+  function handleDiagloConfirmationAnswer(answer: boolean){
+    console.log("Resposta", answer);
+    setDialogConfirmationData({...dialogConfirmationData, visible: false});
+  }
+
+  function handleDialogInfoCloseClick(){
     setDialogInfoData({...dialogInfoData, visible: false});
   }
 
@@ -68,7 +78,11 @@ export default function ProductListing() {
       </section>
       {
         dialogInfoData.visible &&
-        <DialogInfo modalMessage={dialogInfoData.message} onCloseModal={handleCloseModalClick}/>
+        <DialogInfo modalMessage={dialogInfoData.message} onCloseModal={handleDialogInfoCloseClick}/>
+      }
+      {
+        dialogConfirmationData.visible &&
+        <DialogConfirmation modalMessage={dialogConfirmationData.message} onDialogConfirmationAnswer={handleDiagloConfirmationAnswer}/>
       }
     </main>
   );
