@@ -28,7 +28,7 @@ export default function ProductListingCardItem({product, onDeleteClick}: Props) 
         <img src={editImg} alt="Editar" />
       </td>
       <td className="product-button delete-button">
-        <img src={deleteImg} alt="Deletar" onClick={onDeleteClick}/>
+        <img src={deleteImg} alt="Deletar" onClick={() => onDeleteClick(product.id)}/>
       </td>
     </tr>
   );

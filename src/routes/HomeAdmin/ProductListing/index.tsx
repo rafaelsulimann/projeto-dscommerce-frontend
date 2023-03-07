@@ -17,11 +17,12 @@ type QueryParams = {
 export default function ProductListing() {
   const [dialogInfoData, setDialogInfoData] = useState({
     visible: false,
-    message: "Operação realizada com sucesso"
+    message: "Operação realizada com sucesso",
   });
   const [dialogConfirmationData, setDialogConfirmationData] = useState({
     visible: false,
-    message: "Tem certeza"
+    id: 0,
+    message: "Tem certeza?",
   });
   const [isLastPage, setIsLastPage] = useState(false);
   const [products, setProducts] = useState<ProductDTO[]>([]);
@@ -49,17 +50,33 @@ export default function ProductListing() {
     setQueryParams({ ...queryParams, page: queryParams.page + 1 });
   }
 
-  function handleDeleteClick(){
-    setDialogConfirmationData({...dialogConfirmationData, visible: true});
+  function handleDeleteClick(productId: number) {
+    setDialogConfirmationData({
+      ...dialogConfirmationData,
+      id: productId,
+      visible: true,
+    });
   }
 
-  function handleDiagloConfirmationAnswer(answer: boolean){
+  function handleDiagloConfirmationAnswer(answer: boolean, productId: number) {
+    if (answer) {
+      productService.deleteById(productId)
+        .then(() => {
+          setDialogInfoData({ ...dialogInfoData, visible: true, message: "Operação realizada com sucesso" });
+          setDialogConfirmationData({...dialogConfirmationData, id: 0, visible: false });
+          setProducts([]);
+          setQueryParams({ ...queryParams, page: 0 });
+        })
+        .catch(error => {
+          setDialogInfoData({...dialogInfoData, visible: true, message: error.response.data.error})
+          setDialogConfirmationData({...dialogConfirmationData, id: 0, visible: false});
+        });
+    }
     console.log("Resposta", answer);
-    setDialogConfirmationData({...dialogConfirmationData, visible: false});
   }
 
-  function handleDialogInfoCloseClick(){
-    setDialogInfoData({...dialogInfoData, visible: false});
+  function handleDialogInfoCloseClick() {
+    setDialogInfoData({ ...dialogInfoData, visible: false });
   }
 
   return (
@@ -71,19 +88,27 @@ export default function ProductListing() {
         <SearchBar onSearch={handleSearch} />
       </section>
       <section id="product-listing">
-        <ProductListingCard products={products} onDeleteClick={handleDeleteClick}/>
+        <ProductListingCard
+          products={products}
+          onDeleteClick={handleDeleteClick}
+        />
       </section>
       <section id="load-more">
         {!isLastPage && <LoadMoreButton onClick={handleNextPageClick} />}
       </section>
-      {
-        dialogInfoData.visible &&
-        <DialogInfo modalMessage={dialogInfoData.message} onCloseModal={handleDialogInfoCloseClick}/>
-      }
-      {
-        dialogConfirmationData.visible &&
-        <DialogConfirmation modalMessage={dialogConfirmationData.message} onDialogConfirmationAnswer={handleDiagloConfirmationAnswer}/>
-      }
+      {dialogInfoData.visible && (
+        <DialogInfo
+          modalMessage={dialogInfoData.message}
+          onCloseModal={handleDialogInfoCloseClick}
+        />
+      )}
+      {dialogConfirmationData.visible && (
+        <DialogConfirmation
+          modalMessage={dialogConfirmationData.message}
+          onDialogConfirmationAnswer={handleDiagloConfirmationAnswer}
+          id={dialogConfirmationData.id}
+        />
+      )}
     </main>
   );
 }
