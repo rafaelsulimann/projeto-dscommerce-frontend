@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { CredentialsDTO } from "../../models/auth";
+import FormInput from "../FormInput";
 import "./styles.scss";
 
 type Props = {
-  onSubmit : Function;
+  onSubmit: Function;
   onChange: Function;
-  formData: CredentialsDTO;
+  formData: any;
 }
 
 export default function LoginCard({onSubmit, onChange, formData} : Props) {
@@ -18,7 +17,7 @@ export default function LoginCard({onSubmit, onChange, formData} : Props) {
   function handleChange(event: any) {
     const value = event.target.value;
     const name = event.target.name;
-    onChange({ ...formData, [name]: value });
+    onChange({ ...formData, [name]: {...formData[name], value: value}});
   }
 
   return (
@@ -30,24 +29,16 @@ export default function LoginCard({onSubmit, onChange, formData} : Props) {
           </div>
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="login-form-input-text">
-              <label htmlFor="username">Email</label>
-              <input
-                name="username"
-                id="username"
-                value={formData.username || ""}
-                type="text"
-                placeholder="Email"
+              <label htmlFor={formData.username.id}>Email</label>
+              <FormInput
+                {...formData.username}
                 onChange={handleChange}
               />
             </div>
             <div className="login-form-input-text">
-              <label htmlFor="password">Senha</label>
-              <input
-                name="password"
-                id="password"
-                value={formData.password || ""}
-                type="password"
-                placeholder="Senha"
+              <label htmlFor={formData.password.id}>Senha</label>
+              <FormInput
+                {...formData.password}
                 onChange={handleChange}
               />
             </div>

@@ -1,39 +1,61 @@
 import { useContext, useState } from "react";
 import LoginCard from "../../../components/LoginCard";
 import { CredentialsDTO } from "../../../models/auth";
-import * as authService from '../../../services/auth-service'
+import * as authService from "../../../services/auth-service";
 import { ContextToken } from "../../../utils/context-token";
 import "./styles.scss";
 
 export default function Login() {
+  const { setContextToken } = useContext(ContextToken);
 
-  const {setContextToken} = useContext(ContextToken);
+  const [formData, setFormData] = useState<any>({
+    username: {
+      value: "",
+      id: "username",
+      name: "username",
+      type: "text",
+      placeholder: "Email",
+      validation: function (value: string) {
+        return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+          value.toLowerCase()
+        );
+      },
+      message: "Favor informar um email válido",
+    },
+    password: {
+      value: "",
+      id: "password",
+      name: "password",
+      type: "password",
+      placeholder: "Password"
+    }
+  });
 
-  const [formData, setFormData] = useState<CredentialsDTO>({
-    username: "",
-    password: ""
-  })
-
-  function handleSubmit(loginRequest : CredentialsDTO) {
-    setFormData(loginRequest);
-    authService.loginRequest(formData)
-      .then(response => {
+  function handleSubmit(formDataProps: any) {
+    setFormData(formDataProps);
+    authService
+      .loginRequest({username: formData.username.value, password: formData.password.value})
+      .then((response) => {
         authService.saveAccessToken(response.data.access_token);
         setContextToken(authService.getAccessTokenPayload());
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error.response.data);
       });
   }
 
-  function handleChange(loginData : CredentialsDTO) {
-    setFormData(loginData);
+  function handleChange(formData: any) {
+    setFormData(formData);
   }
 
   return (
     <main className="login">
       <section id="login-card">
-        <LoginCard onChange={handleChange} formData={formData} onSubmit={handleSubmit}/>
+        <LoginCard
+          onChange={handleChange}
+          formData={formData}
+          onSubmit={handleSubmit}
+        />
       </section>
     </main>
   );
