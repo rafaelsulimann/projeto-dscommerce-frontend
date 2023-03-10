@@ -1,4 +1,5 @@
 import FormInput from "../FormInput";
+import * as forms from '../../utils/forms'
 import "./styles.scss";
 
 type Props = {
@@ -15,9 +16,7 @@ export default function LoginCard({onSubmit, onChange, formData} : Props) {
   }
 
   function handleChange(event: any) {
-    const value = event.target.value;
-    const name = event.target.name;
-    onChange({ ...formData, [name]: {...formData[name], value: value}});
+    onChange(forms.update(formData, event.target.name, event.target.value));
   }
 
   return (
