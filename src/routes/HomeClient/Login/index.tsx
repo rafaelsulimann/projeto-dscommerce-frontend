@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
 import LoginCard from "../../../components/LoginCard";
-import { CredentialsDTO } from "../../../models/auth";
-import * as authService from "../../../services/auth-service";
 import { ContextToken } from "../../../utils/context-token";
+import * as authService from "../../../services/auth-service";
+import * as forms from '../../../utils/forms'
+import { useLocation } from "react-router-dom";
 import "./styles.scss";
 
 export default function Login() {
   const { setContextToken } = useContext(ContextToken);
+  const location = useLocation();
 
   const [formData, setFormData] = useState<any>({
     username: {
@@ -34,10 +36,11 @@ export default function Login() {
   function handleSubmit(formDataProps: any) {
     setFormData(formDataProps);
     authService
-      .loginRequest({username: formData.username.value, password: formData.password.value})
+      .loginRequest(forms.toValues(formData))
       .then((response) => {
         authService.saveAccessToken(response.data.access_token);
         setContextToken(authService.getAccessTokenPayload());
+        history.back();
       })
       .catch((error) => {
         console.log(error.response.data);

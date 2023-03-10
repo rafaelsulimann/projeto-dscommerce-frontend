@@ -12,7 +12,7 @@ export default function CartCardConfirmation({order} : Props) {
       <div className="container cart-confirmation-product-card-container">
         <div className="cart-confirmation-product-cards">
           {
-            order?.items.map(item => <CartProductCardConfirmation item={item}/>)
+            order?.items.map(item => <CartProductCardConfirmation item={item} key={item.productId}/>)
           }
         </div>
         <div className="cart-confirmation-product-total-price">
