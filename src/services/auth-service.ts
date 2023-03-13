@@ -4,6 +4,7 @@ import { AccessPayloadTokenDTO, CredentialsDTO, RoleEnum } from "../models/auth"
 import { requestBackend } from "../utils/requests";
 import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
 import * as accessTokenRepository from "../localstorage/access-token-repository";
+import { history } from '../utils/history'
 import jwtDecode from "jwt-decode";
 
 export function loginRequest(loginData: CredentialsDTO) {
@@ -26,6 +27,7 @@ export function loginRequest(loginData: CredentialsDTO) {
 
 export function logout() {
   accessTokenRepository.remove();
+  history.push("/");
 }
 
 export function saveAccessToken(token: string) {

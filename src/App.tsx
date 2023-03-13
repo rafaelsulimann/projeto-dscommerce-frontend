@@ -50,9 +50,8 @@ export default function App() {
             <Route path="/admin" element={<PrivateRoute roles={["ROLE_ADMIN"]}><HomeAdmin /></PrivateRoute>}>
               <Route index element={<Navigate to={"/admin/home"}/>} />
               <Route path="home" element={<WelcomeAdmin />} />
-              <Route path="products" element={<ProductListing />} >
-                <Route path=":productId" element={<ProductForm />} />
-              </Route>
+              <Route path="products" element={<ProductListing />} />
+              <Route path="products/:productId" element={<ProductForm />} />
               <Route path="*" element={<Navigate to="/admin" />} />
             </Route>
           </Routes>

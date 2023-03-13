@@ -9,3 +9,11 @@ export function toValues(formData:any){
     }
     return data;
 }
+
+export function updateAll(inputs: any, response: any){
+    const newInputs: any = {};
+    for(var name in inputs){
+        newInputs[name] = {...inputs[name], value: response[name]};
+    }
+    return newInputs;
+}
