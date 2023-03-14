@@ -19,7 +19,7 @@ export default function ProductForm() {
       placeholder: "Nome",
     },
     price: {
-      value: 200,
+      value: "",
       id: "price",
       name: "price",
       type: "number",
@@ -39,7 +39,6 @@ export default function ProductForm() {
   });
 
   useEffect(() => {
-    console.log(forms.validate(formData, "name"))
     if (isEditing){
       productService.findById(Number(params.productId))
         .then(response => {

@@ -13,7 +13,9 @@ type Props = {
 export default function ProductFormCard({formData, onChange}: Props) {
 
   function handleChange(event: any) {
-    onChange(forms.update(formData, event.target.name, event.target.value));
+    const dataUpdated = forms.update(formData, event.target.name, event.target.value);
+    const dataValidated = forms.validate(dataUpdated, event.target.name);
+    onChange(dataValidated);
   }
 
   return (
@@ -25,15 +27,18 @@ export default function ProductFormCard({formData, onChange}: Props) {
           <form className="product-form-card">
             <div className="product-form-card-input-text">
               <label htmlFor={formData.name.id}>Nome</label>
-              <FormInput {...formData.name} onChange={handleChange}/>
+              <FormInput {...formData.name} className="form-input" onChange={handleChange}/>
+              <div className="error-message">{formData.name.message}</div>
             </div>
             <div className="product-form-card-input-text">
               <label htmlFor={formData.price.id}>Preço</label>
-              <FormInput {...formData.price} onChange={handleChange}/>
+              <FormInput {...formData.price} className="form-input" onChange={handleChange}/>
+              <div className="error-message">{formData.price.message}</div>
             </div>
             <div className="product-form-card-input-text">
               <label htmlFor={formData.imgUrl.id}>Imagem</label>
-              <FormInput {...formData.imgUrl} onChange={handleChange}/>
+              <FormInput {...formData.imgUrl} className="form-input" onChange={handleChange}/>
+              <div className="error-message">{formData.imgUrl.message}</div>
             </div>
             <div className="product-form-card-buttons">
               <Link to="/admin/products" className="product-form-card-link">
