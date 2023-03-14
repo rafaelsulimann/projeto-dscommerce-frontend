@@ -14,13 +14,11 @@ type Props = {
 export default function ProductFormCard({formData, onChange, onTurnDirty}: Props) {
 
   function handleChange(event: any) {
-    const dataUpdated = forms.update(formData, event.target.name, event.target.value);
-    const dataValidated = forms.validate(dataUpdated, event.target.name);
-    onChange(dataValidated);
+    onChange(forms.updateAndValidate(formData, event.target.name, event.target.value));
   }
 
   function handleTurnDirty(name: string){
-    onTurnDirty(name);
+    onTurnDirty(forms.dirtyAndValidate(formData, name));
   }
 
   return (

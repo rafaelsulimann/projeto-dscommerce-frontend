@@ -8,7 +8,6 @@ import "./styles.scss";
 
 export default function Login() {
   const { setContextToken } = useContext(ContextToken);
-  const location = useLocation();
 
   const [formData, setFormData] = useState<any>({
     username: {
@@ -47,8 +46,12 @@ export default function Login() {
       });
   }
 
-  function handleChange(formData: any) {
-    setFormData(formData);
+  function handleChange(formDataProps: any) {
+    setFormData(formDataProps);
+  }
+
+  function handleTurnDirty(formDataProps: any){
+    setFormData(formDataProps);
   }
 
   return (
@@ -56,6 +59,7 @@ export default function Login() {
       <section id="login-card">
         <LoginCard
           onChange={handleChange}
+          onTurnDirty={handleTurnDirty}
           formData={formData}
           onSubmit={handleSubmit}
         />

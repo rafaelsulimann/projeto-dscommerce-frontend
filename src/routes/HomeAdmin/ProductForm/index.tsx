@@ -51,9 +51,8 @@ export default function ProductForm() {
     setFormData(formDataProps);
   }
 
-  function handleTurnDirty(name: string){
-    const newFormData = forms.toDirty(formData, name);
-    setFormData(newFormData);
+  function handleTurnDirty(formDataProps: any){
+    setFormData(formDataProps);
   }
 
   return (
