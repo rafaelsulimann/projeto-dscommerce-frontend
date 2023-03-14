@@ -51,10 +51,15 @@ export default function ProductForm() {
     setFormData(formDataProps);
   }
 
+  function handleTurnDirty(name: string){
+    const newFormData = forms.toDirty(formData, name);
+    setFormData(newFormData);
+  }
+
   return (
     <main className="product-form">
       <section id="product-form-card">
-        <ProductFormCard formData={formData} onChange={handleChange}/>
+        <ProductFormCard formData={formData} onChange={handleChange} onTurnDirty={handleTurnDirty}/>
       </section>
     </main>
   );

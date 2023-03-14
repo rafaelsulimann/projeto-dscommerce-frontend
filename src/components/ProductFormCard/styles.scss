@@ -32,10 +32,10 @@
         .product-form-card{
             .product-form-card-input-text{
                 margin-bottom: 20px;
-                .form-input[data-invalid="true"]{
+                .form-input[data-dirty="true"][data-invalid="true"]{
                     border: 1px solid var(--red-error-color);
                 }
-                .form-input[data-invalid="true"] ~ .error-message {
+                .form-input[data-dirty="true"][data-invalid="true"] ~ .error-message {
                     display: unset;
                 }
                 .error-message {
