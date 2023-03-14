@@ -40,6 +40,17 @@ export default function ProductForm() {
       type: "text",
       placeholder: "Imagem"
     },
+    description: {
+      value: "",
+      id: "description",
+      name: "description",
+      type: "text",
+      placeholder: "Descrição",
+      validation: function(value: any){
+        return /^.{10,}$/.test(value);
+      },
+      message: "Favor informar no mínimo 10 caracteres"
+    }
   });
 
   useEffect(() => {

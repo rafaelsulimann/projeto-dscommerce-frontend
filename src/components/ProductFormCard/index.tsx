@@ -4,6 +4,7 @@ import PrimaryButton from "../PrimaryButton";
 import SecondButton from "../SecondButton";
 import * as forms from '../../utils/forms';
 import "./styles.scss";
+import FormTextarea from "../FormTextarea";
 
 type Props = {
   formData: any;
@@ -42,6 +43,11 @@ export default function ProductFormCard({formData, onChange, onTurnDirty}: Props
               <label htmlFor={formData.imgUrl.id}>Imagem</label>
               <FormInput {...formData.imgUrl} className="form-input" onChange={handleChange} onTurnDirty={handleTurnDirty}/>
               <div className="error-message">{formData.imgUrl.message}</div>
+            </div>
+            <div className="product-form-card-input-text input-description">
+              <label htmlFor={formData.description.id}>Descrição</label>
+              <FormTextarea {...formData.description} className="form-input" onChange={handleChange} onTurnDirty={handleTurnDirty}/>
+              <div className="error-message">{formData.description.message}</div>
             </div>
             <div className="product-form-card-buttons">
               <Link to="/admin/products" className="product-form-card-link">
