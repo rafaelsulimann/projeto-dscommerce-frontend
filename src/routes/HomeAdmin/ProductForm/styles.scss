@@ -1,7 +1,8 @@
 .product-form {
     @media(min-width: 540px){
-        height: 88.3vh;
+        min-height: 88.3vh;
     }
-    height: 100%;
-    padding-bottom: 20px;
+    .product-form-card {
+        padding-bottom: 20px;
+    }
 }

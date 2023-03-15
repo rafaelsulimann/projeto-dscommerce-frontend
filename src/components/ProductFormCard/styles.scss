@@ -61,17 +61,8 @@
             input::placeholder, textarea::placeholder {
                 color: var(--gray-light-placeholder-color);
             }
-            .input-select:invalid {
-                color: var(--gray-light-placeholder-color);
-            }
             .input-select {
-                
-                option[disabled] {
-                    display: none;
-                }
-                option {
-                    color: var(--gray-color);
-                }
+                border-radius: 5px;
             }
             
             .input-description {

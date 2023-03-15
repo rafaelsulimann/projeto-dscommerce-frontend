@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductFormCard from "../../../components/ProductFormCard";
+import { CategoryDTO } from "../../../models/category";
 import * as productService from '../../../services/product-service'
 import * as forms from '../../../utils/forms'
+import * as categoryService from '../../../services/category-service'
 import "./styles.scss";
 
 export default function ProductForm() {
 
   const params = useParams();
   const isEditing = params.productId !== 'create';
+
+  const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
   const [formData, setFormData] = useState<any>({
     name: {
@@ -50,8 +54,25 @@ export default function ProductForm() {
         return /^.{10,}$/.test(value);
       },
       message: "Favor informar no mínimo 10 caracteres"
+    },
+    categories: {
+      value: [],
+      id: "categories",
+      name: "categories",
+      placeholder: "Categorias",
+      validation: function(value: CategoryDTO[]){
+        return value.length > 0;
+      },
+      message: "Favor informar ao menos uma categoria"
     }
   });
+
+  useEffect(() => {
+    categoryService.findAllRequest()
+      .then(response => {
+        setCategories(response.data.content);
+      })
+  }, [])
 
   useEffect(() => {
     if (isEditing){
@@ -73,7 +94,7 @@ export default function ProductForm() {
   return (
     <main className="product-form">
       <section id="product-form-card">
-        <ProductFormCard formData={formData} onChange={handleChange} onTurnDirty={handleTurnDirty}/>
+        <ProductFormCard formData={formData} onChange={handleChange} onTurnDirty={handleTurnDirty} categories={categories}/>
       </section>
     </main>
   );
