@@ -19,6 +19,7 @@ export default function FormSelect(props: any) {
       <Select
         {...selectProps}
         onBlur={handleTurnDirty}
+        className="input-select-itens"
       />
     </div>
   );

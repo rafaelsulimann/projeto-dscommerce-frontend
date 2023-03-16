@@ -8,6 +8,7 @@ import FormTextarea from "../FormTextarea";
 import { CategoryDTO } from "../../models/category";
 import Select from "react-select";
 import FormSelect from "../FormSelect";
+import { selectStyles } from "../../utils/select";
 
 type Props = {
   formData: any;
@@ -73,10 +74,11 @@ export default function ProductFormCard({
             />
             <div className="error-message">{formData.imgUrl.message}</div>
           </div>
-          <div className="product-form-card-input-text input-categories">
+          <div className="product-form-card-input-text">
             <FormSelect
               {...formData.categories}
               className="form-input input-select"
+              styles={selectStyles}
               onTurnDirty={handleTurnDirty}
               onChange={(obj: any) => {
                 handleSelectChange(obj)
