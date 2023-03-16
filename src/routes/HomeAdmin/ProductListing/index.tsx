@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DialogConfirmation from "../../../components/DialogConfirmation";
 import DialogInfo from "../../../components/DialogInfo";
 import LoadMoreButton from "../../../components/LoadMoreButton";
@@ -15,6 +16,7 @@ type QueryParams = {
 };
 
 export default function ProductListing() {
+  const navigate = useNavigate();
   const [dialogInfoData, setDialogInfoData] = useState({
     visible: false,
     message: "Operação realizada com sucesso",
@@ -57,6 +59,10 @@ export default function ProductListing() {
       visible: true,
     });
   }
+  
+  function handleEditClick(productId: number) {
+    navigate(`/admin/products/${productId}`);
+  }
 
   function handleDiagloConfirmationAnswer(answer: boolean, productId: number) {
     if (answer) {
@@ -91,6 +97,7 @@ export default function ProductListing() {
         <ProductListingCard
           products={products}
           onDeleteClick={handleDeleteClick}
+          onEditClick={handleEditClick}
         />
       </section>
       <section id="load-more">

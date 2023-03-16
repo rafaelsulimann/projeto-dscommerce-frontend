@@ -6,9 +6,10 @@ import "./styles.scss";
 type Props = {
   products: ProductDTO[];
   onDeleteClick: any;
+  onEditClick: any;
 };
 
-export default function ProductListingCard({ products, onDeleteClick }: Props) {
+export default function ProductListingCard({ products, onDeleteClick, onEditClick }: Props) {
   return (
     <>
       <div className="container product-listing-container">
@@ -29,7 +30,7 @@ export default function ProductListingCard({ products, onDeleteClick }: Props) {
           </thead>
           <tbody>
             {products.map((product) => (
-              <ProductListingCardItem key={product.id} product={product} onDeleteClick={onDeleteClick}/>
+              <ProductListingCardItem key={product.id} product={product} onDeleteClick={onDeleteClick} onEditClick={onEditClick}/>
             ))}
           </tbody>
         </table>

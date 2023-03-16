@@ -15,6 +15,7 @@ type Props = {
   categories: CategoryDTO[];
   onChange: Function;
   onTurnDirty: Function;
+  onSubmit: Function;
 };
 
 export default function ProductFormCard({
@@ -22,6 +23,7 @@ export default function ProductFormCard({
   onChange,
   onTurnDirty,
   categories,
+  onSubmit
 }: Props) {
   function handleChange(event: any) {
     onChange(
@@ -37,13 +39,18 @@ export default function ProductFormCard({
     onTurnDirty(forms.dirtyAndValidate(formData, name));
   }
 
+  function handleSubmit(event: any) {
+    event.preventDefault();
+    onSubmit(formData);
+  }
+
   return (
     <div className="container product-form-card-container">
       <div className="product-form-card-div">
         <div className="product-form-card-title">
           <h2>Dados do produto</h2>
         </div>
-        <form className="product-form-card">
+        <form className="product-form-card" onSubmit={handleSubmit}>
           <div className="product-form-card-input-text">
             <label htmlFor={formData.name.id}>Nome</label>
             <FormInput
@@ -79,14 +86,15 @@ export default function ProductFormCard({
               {...formData.categories}
               className="form-input input-select"
               styles={selectStyles}
-              onTurnDirty={handleTurnDirty}
-              onChange={(obj: any) => {
-                handleSelectChange(obj)
-              }}
-              options={categories}
               isMulti
+              options={categories}
+              noOptionsMessage={() => "Não há mais opções disponíveis"}
               getOptionValue={(obj: any) => String(obj.id)}
               getOptionLabel={(obj: any) => obj.name}
+              onTurnDirty={handleTurnDirty}
+              onChange={(obj: any) => {
+                handleSelectChange(obj);
+              }}
             />
             <div className="error-message">{formData.categories.message}</div>
           </div>
@@ -101,12 +109,8 @@ export default function ProductFormCard({
             <div className="error-message">{formData.description.message}</div>
           </div>
           <div className="product-form-card-buttons">
-            <Link to="/admin/products" className="product-form-card-link">
-              <SecondButton value="Cancelar" />
-            </Link>
-            <Link to="/admin/products" className="product-form-card-link">
-              <PrimaryButton value="Salvar" />
-            </Link>
+            <SecondButton value="Cancelar" buttonClassName="product-form-card-button"/>
+            <PrimaryButton value="Salvar" buttonClassName="product-form-card-button"/>
           </div>
         </form>
       </div>

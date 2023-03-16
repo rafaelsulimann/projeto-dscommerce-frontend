@@ -65,8 +65,8 @@
         color: var(--gray-light-placeholder-color);
       }
       .input-select {
-          border-radius: 4px;
-          border: 1px solid var(--gray-light-color);
+        border-radius: 4px;
+        border: 1px solid var(--gray-light-color);
       }
 
       .input-description {
@@ -87,19 +87,13 @@
             margin: 0px;
           }
         }
-        .product-form-card-link {
+        .product-form-card-button {
+          min-width: 220px;
           width: 100%;
           max-width: 220px;
-          .second-button {
+          cursor: pointer;
+          @media (max-width: 540px) {
             margin-bottom: 20px;
-            input {
-              cursor: pointer;
-            }
-          }
-          .primary-button {
-            input {
-              cursor: pointer;
-            }
           }
         }
       }

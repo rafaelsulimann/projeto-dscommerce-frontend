@@ -1,7 +1,6 @@
 export const selectStyles = {
   control: (provided: any) => ({
     ...provided,
-    padding: "0px 0px 0px 20px",
     border: "none",
     boxShadow: "none",
     "&:hover": {
@@ -10,10 +9,11 @@ export const selectStyles = {
   }),
   valueContainer: (provided: any) => ({
     ...provided,
-    padding: 0,
+    padding: "0px 0px 0px 20px",
     maxHeight: "40px",
     display: "flex",
-    alignContent: "center"
+    alignContent: "center",
+    margin: 0
   }),
   container: (provided: any) => ({
     ...provided,
