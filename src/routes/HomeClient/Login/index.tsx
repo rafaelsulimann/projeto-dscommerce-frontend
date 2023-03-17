@@ -7,7 +7,7 @@ import "./styles.scss";
 
 export default function Login() {
   const { setContextToken } = useContext(ContextToken);
-  const [submitReponseFail, setSubmitResponseFail] = useState(true);
+  const [submitReponseFail, setSubmitResponseFail] = useState(false);
 
   const [formData, setFormData] = useState<any>({
     username: {
