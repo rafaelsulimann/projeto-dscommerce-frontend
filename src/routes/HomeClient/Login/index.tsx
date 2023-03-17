@@ -3,11 +3,11 @@ import LoginCard from "../../../components/LoginCard";
 import { ContextToken } from "../../../utils/context-token";
 import * as authService from "../../../services/auth-service";
 import * as forms from '../../../utils/forms'
-import { useLocation } from "react-router-dom";
 import "./styles.scss";
 
 export default function Login() {
   const { setContextToken } = useContext(ContextToken);
+  const [submitReponseFail, setSubmitResponseFail] = useState(true);
 
   const [formData, setFormData] = useState<any>({
     username: {
@@ -33,7 +33,12 @@ export default function Login() {
   });
 
   function handleSubmit(formDataProps: any) {
-    setFormData(formDataProps);
+    setSubmitResponseFail(false);
+    const formDataValidated = forms.dirtyAndValidateAll(formDataProps);
+    if (forms.hasAnyInvalid(formDataValidated)) {
+      setFormData(formDataValidated);
+      return;
+    }
     authService
       .loginRequest(forms.toValues(formData))
       .then((response) => {
@@ -41,8 +46,8 @@ export default function Login() {
         setContextToken(authService.getAccessTokenPayload());
         history.back();
       })
-      .catch((error) => {
-        console.log(error.response.data);
+      .catch(() => {
+        setSubmitResponseFail(true);
       });
   }
 
@@ -62,6 +67,7 @@ export default function Login() {
           onTurnDirty={handleTurnDirty}
           formData={formData}
           onSubmit={handleSubmit}
+          submitResponseFail={submitReponseFail}
         />
       </section>
     </main>

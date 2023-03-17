@@ -92,8 +92,8 @@ export default function ProductForm() {
   function handleSubmit(formDataProps: any) {
     const formDataValidated = forms.dirtyAndValidateAll(formDataProps);
     if (forms.hasAnyInvalid(formDataValidated)) {
-      //setFormData(formDataValidated);
-      //return;
+      setFormData(formDataValidated);
+      return;
     }
 
     const requestBody = forms.toValues(formData);

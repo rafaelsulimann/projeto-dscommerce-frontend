@@ -1,5 +1,5 @@
 import FormInput from "../FormInput";
-import * as forms from '../../utils/forms'
+import * as forms from "../../utils/forms";
 import "./styles.scss";
 
 type Props = {
@@ -7,17 +7,25 @@ type Props = {
   onChange: Function;
   onTurnDirty: Function;
   formData: any;
-}
+  submitResponseFail: any;
+};
 
-export default function LoginCard({onSubmit, onChange, onTurnDirty, formData} : Props) {
-
+export default function LoginCard({
+  onSubmit,
+  onChange,
+  onTurnDirty,
+  formData,
+  submitResponseFail,
+}: Props) {
   function handleSubmit(event: any) {
     event.preventDefault();
     onSubmit(formData);
   }
 
   function handleChange(event: any) {
-    onChange(forms.updateAndValidate(formData, event.target.name, event.target.value));
+    onChange(
+      forms.updateAndValidate(formData, event.target.name, event.target.value)
+    );
   }
 
   function handleTurnDirty(name: string) {
@@ -39,8 +47,8 @@ export default function LoginCard({onSubmit, onChange, onTurnDirty, formData} : 
                 onChange={handleChange}
                 onTurnDirty={handleTurnDirty}
                 className="form-input"
-                />
-                <div className="error-message">{formData.username?.message}</div>
+              />
+              <div className="error-message">{formData.username?.message}</div>
             </div>
             <div className="login-form-input-text">
               <label htmlFor={formData.password.id}>Senha</label>
@@ -50,8 +58,16 @@ export default function LoginCard({onSubmit, onChange, onTurnDirty, formData} : 
                 onTurnDirty={handleTurnDirty}
                 className="form-input"
               />
-                <div className="error-message">{formData.password?.message}</div>
+              <div className="error-message">{formData.password?.message}</div>
             </div>
+              {
+                submitResponseFail && 
+                (
+                  <div className="error-backend-message">
+                    <p>Usuário ou senha inválidos</p>
+                  </div>
+                )
+              }
             <div className="login-form-input-submit">
               <input type="submit" value="Entrar" />
             </div>
