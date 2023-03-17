@@ -77,8 +77,11 @@ export default function ProductListing() {
           setDialogInfoData({...dialogInfoData, visible: true, message: error.response.data.error})
           setDialogConfirmationData({...dialogConfirmationData, id: 0, visible: false});
         });
+    }else{
+      setDialogConfirmationData({...dialogConfirmationData, id: 0, visible: false});
     }
     console.log("Resposta", answer);
+    console.log(dialogConfirmationData.visible);
   }
 
   function handleDialogInfoCloseClick() {

@@ -67,7 +67,10 @@
                 cursor: pointer;
             }
             .header-client-nav-items{
-                margin-left: 20px;
+                @media(min-width:540px){
+                    margin-left: 20px;
+                }
+                margin-left: 14px;
             }
             .header-client-cart-image {
                 display: flex;
