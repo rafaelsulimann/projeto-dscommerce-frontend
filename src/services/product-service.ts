@@ -53,3 +53,13 @@ export function insertRequest(product: ProductDTO){
 
     return requestBackend(config);
 }
+
+export function setBackendErrors(inputs: any, errors: any[]){
+    const newInputs = {...inputs};
+    errors.forEach(error => {
+        newInputs[error.fieldName].message = error.message;
+        newInputs[error.fieldName].dirty = "true";
+        newInputs[error.fieldName].invalid = "true";
+    });
+    return newInputs;
+}

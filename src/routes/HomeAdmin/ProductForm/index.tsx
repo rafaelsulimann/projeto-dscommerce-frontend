@@ -92,22 +92,27 @@ export default function ProductForm() {
   function handleSubmit(formDataProps: any) {
     const formDataValidated = forms.dirtyAndValidateAll(formDataProps);
     if (forms.hasAnyInvalid(formDataValidated)) {
-      setFormData(formDataValidated);
-      return;
+      //setFormData(formDataValidated);
+      //return;
     }
 
     const requestBody = forms.toValues(formData);
 
     if (isEditing) {
       requestBody.id = params.productId;
-      productService.updateRequest(requestBody).then(() => {
-        navigate("/admin/products");
-      });
-    }else {
-      productService.insertRequest(requestBody).then(() => {
-        navigate("/admin/products");
-      });
     }
+
+    const request = isEditing
+    ? productService.updateRequest(requestBody)
+    : productService.insertRequest(requestBody)
+
+    request
+      .then(() => {
+        navigate("/admin/products");
+      })
+      .catch(error => {
+        setFormData(productService.setBackendErrors(formData, error.response.data.errors));
+      })
   }
 
   return (
