@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FormInput from "../FormInput";
 import PrimaryButton from "../PrimaryButton";
 import SecondButton from "../SecondButton";
@@ -6,7 +6,6 @@ import * as forms from "../../utils/forms";
 import "./styles.scss";
 import FormTextarea from "../FormTextarea";
 import { CategoryDTO } from "../../models/category";
-import Select from "react-select";
 import FormSelect from "../FormSelect";
 import { selectStyles } from "../../utils/select";
 
@@ -25,6 +24,9 @@ export default function ProductFormCard({
   categories,
   onSubmit
 }: Props) {
+
+  const navigate = useNavigate();
+
   function handleChange(event: any) {
     onChange(
       forms.updateAndValidate(formData, event.target.name, event.target.value)
@@ -42,6 +44,10 @@ export default function ProductFormCard({
   function handleSubmit(event: any) {
     event.preventDefault();
     onSubmit(formData);
+  }
+
+  function handleCancelClick(event: any){
+    navigate("/admin/products");
   }
 
   return (
@@ -109,7 +115,7 @@ export default function ProductFormCard({
             <div className="error-message">{formData.description.message}</div>
           </div>
           <div className="product-form-card-buttons">
-            <SecondButton value="Cancelar" buttonClassName="product-form-card-button"/>
+            <SecondButton value="Cancelar" buttonClassName="product-form-card-button" onClick={handleCancelClick}/>
             <PrimaryButton value="Salvar" buttonClassName="product-form-card-button"/>
           </div>
         </form>
