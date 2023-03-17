@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from "axios";
+import { ProductDTO } from "../models/product";
 import { requestBackend } from "../utils/requests";
 
 export function findAllRequest(page: number, name: string, size=12, sort="name,asc"){
@@ -32,3 +33,12 @@ export function deleteById(id: number){
     return requestBackend(config);
 }
 
+export function updateRequest(product: ProductDTO){
+    const config : AxiosRequestConfig = {
+        method: "PUT",
+        url: `/products/${product.id}`,
+        withCredentials: true,
+        data: product
+    }
+    return requestBackend(config);
+}

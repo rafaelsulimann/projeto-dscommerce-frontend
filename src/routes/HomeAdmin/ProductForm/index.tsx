@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductFormCard from "../../../components/ProductFormCard";
 import { CategoryDTO } from "../../../models/category";
 import * as productService from "../../../services/product-service";
@@ -9,6 +9,7 @@ import "./styles.scss";
 
 export default function ProductForm() {
   const params = useParams();
+  const navigate = useNavigate();
   const isEditing = params.productId !== "create";
 
   const [categories, setCategories] = useState<CategoryDTO[]>([]);
@@ -94,6 +95,17 @@ export default function ProductForm() {
       setFormData(formDataValidated);
       return;
     }
+
+    const requestBody = forms.toValues(formData);
+    if(isEditing){
+      requestBody.id = params.productId;
+      productService.updateRequest(requestBody)
+        .then(() => {
+          navigate("/admin/products");
+          
+        })
+    }
+
   }
 
   return (
